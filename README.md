@@ -63,12 +63,12 @@ user: solo puede registrarse, iniciar/cerrar sesión y ver productos.
 
 
 ## 📁 Arquitectura del proyecto
-
+```bash
 app/
 ├── Http/       <- Capa de presentación  (Controllers, Requests)
 ├── Models/     <- Capa de dominio (Modelos de datos)
 ├── Services/   <- Capa de lógica de negocio
-
+```
 
 
 ## 📚 Endpoints principales
