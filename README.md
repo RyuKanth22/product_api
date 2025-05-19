@@ -178,22 +178,22 @@ Muestra los detalles de una categoría específica.
 Crea una nueva categoría.
 Payload:
 
-bash
+```bash
 {
   "name": "category_1",
   "description": "Description_1"
 }
-
+```
 
 🔸 PUT /api/categories/{id}
 Actualiza una categoría existente.
 Payload:
-bash
+```bash
 {
   "name": "category_2",
   "description": "Description_2"
 }
-
+```
 
 🔸 DELETE /api/categories/{id}
 Elimina una categoría por su ID.
@@ -211,7 +211,7 @@ Muestra los detalles de un producto específico.
 Crea un nuevo producto.
 Payload:
 
-bash
+```bash
 {
   "name": "Test_1",
   "description": "Description test_1",
@@ -219,12 +219,12 @@ bash
   "stock": 20
   "category_id": 1 (debe existir el registro)
 }
-
+```
 
 🔸 PUT /api/products/{id}
 Actualiza un producto existente.
 Payload:
-bash
+```bash
 {
   "name": "Test_2",
   "description": "Description test_2",
@@ -232,7 +232,7 @@ bash
   "stock": 1
   "category_id": 1 (debe existir el registro)
 }
-
+```
 
 🔸 DELETE /api/products/{id}
 Elimina un producto por su ID.
