@@ -74,19 +74,19 @@ app/
 ## 📚 Endpoints principales
  🔑 Autenticación
 ```bash
-Método	Ruta	        Descripción	                
-POST	/api/register	Registrar nuevo usuario	    
-POST	/api/login	    Iniciar sesión	            
-POST	/api/logout	    Cerrar sesión	            
+Método      Ruta                Descripción	                
+POST        /api/register       Registrar nuevo usuario	    
+POST        /api/login          Iniciar sesión	            
+POST        /api/logout         Cerrar sesión	            
 ```
 ## 📦 Productos
 ```bash
-Método	 Ruta	            Descripción	                    Rol
-GET     /api/products	    Listar productos	            Público
-GET     /api/products/{id}	Ver detalle de un producto	    Público
-POST    /api/products	    Crear nuevo producto	        Admin
-PUT	    /api/products/{id}	Actualizar producto existente	Admin
-DELETE	/api/products/{id}	Eliminar producto	            Admin
+Método	     Ruta                   Descripción                         Rol
+GET         /api/products           Listar productos                Público
+GET         /api/products/{id}      Ver detalle de un producto      Público
+POST        /api/products           Crear nuevo producto            Admin
+PUT         /api/products/{id}      Actualizar producto existente   Admin
+DELETE      /api/products/{id}      Eliminar producto               Admin
 ```
 
 ## 🛠 Migraciones y seeders incluidos
