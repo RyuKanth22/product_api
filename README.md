@@ -137,3 +137,23 @@ model_has_permissions
 role_has_permissions
 
 Estas tablas permiten desacoplar la lógica de roles del modelo User, mejorar la mantenibilidad y facilitar futuras ampliaciones (como permisos específicos por productos).
+
+## 🧠 Importación y uso de API (Postman)
+Para hacer uso de la API en Postman se debe importar el archivo API_Collection.json ubicado en la carpeta raiz del proyecto.
+
+Descripción de los payloads:
+
+Para el correcto funcionamiento se debe realizar primero el inicio de sesión:
+
+## Inicio de sesión
+    ## Cerrar sesión 
+    ## Iniciar sesión 
+    ## Registrar nuevo usuario
+
+El uso de API está clasificado en 2 grupos:
+
+## Categorías:
+    CRUD para la administración de categorías
+
+## Producto
+CRUD para la administración de productos
