@@ -139,21 +139,100 @@ role_has_permissions
 Estas tablas permiten desacoplar la lógica de roles del modelo User, mejorar la mantenibilidad y facilitar futuras ampliaciones (como permisos específicos por productos).
 
 ## 🧠 Importación y uso de API (Postman)
-Para hacer uso de la API en Postman se debe importar el archivo API_Collection.json ubicado en la carpeta raiz del proyecto.
+Para hacer uso de la API en Postman se debe importar el archivo API_Collection.json ubicado en la carpeta raíz del proyecto. Este archivo contiene todas las peticiones organizadas por carpetas para facilitar su ejecución.
 
-Descripción de los payloads:
+## ⚙️ Configuración del Environment en Postman
+Antes de ejecutar las peticiones, es necesario crear un Environment en Postman con las siguientes variables:
 
-Para el correcto funcionamiento se debe realizar primero el inicio de sesión:
+🔸 tenant: Define la URL base de la API.
+Valor: inventario-api.fly.dev
 
-## Inicio de sesión
-    ## Cerrar sesión 
-    ## Iniciar sesión 
-    ## Registrar nuevo usuario
+🔸 token: Contiene el token de autenticación necesario para acceder a los endpoints protegidos.
+Valor: (se llena automáticamente después del login)
 
-El uso de API está clasificado en 2 grupos:
+## 🔐 Autenticación
+Antes de poder consumir los endpoints protegidos, es necesario autenticarse. Las rutas de autenticación disponibles son:
 
-## Categorías:
-    CRUD para la administración de categorías
+Iniciar sesión
+Permite autenticarse con credenciales válidas y obtener un token.
 
-## Producto
-CRUD para la administración de productos
+Cerrar sesión
+Invalida el token de sesión actual.
+
+Registrar nuevo usuario
+Permite crear una nueva cuenta de usuario (debe haber iniciado sesión)
+
+## 📦 Uso de la API
+La API está organizada en los siguientes grupos de recursos:
+
+## 📁 Categorías
+CRUD para la administración de categorías de productos:
+
+🔸 GET /api/categories
+Lista todas las categorías disponibles.
+
+🔸 GET /api/categories/{id}
+Muestra los detalles de una categoría específica.
+
+🔸 POST /api/categories
+Crea una nueva categoría.
+Payload:
+
+bash
+{
+  "name": "category_1",
+  "description": "Description_1"
+}
+
+
+🔸 PUT /api/categories/{id}
+Actualiza una categoría existente.
+Payload:
+bash
+{
+  "name": "category_2",
+  "description": "Description_2"
+}
+
+
+🔸 DELETE /api/categories/{id}
+Elimina una categoría por su ID.
+
+## 📦 Productos
+CRUD para la administración de productos:
+
+🔸 GET /api/products
+Lista todos los productos disponibles.
+
+🔸 GET /api/products/{id}
+Muestra los detalles de un producto específico.
+
+🔸 POST /api/products
+Crea un nuevo producto.
+Payload:
+
+bash
+{
+  "name": "Test_1",
+  "description": "Description test_1",
+  "price": 399,
+  "stock": 20
+  "category_id": 1 (debe existir el registro)
+}
+
+
+🔸 PUT /api/products/{id}
+Actualiza un producto existente.
+Payload:
+bash
+{
+  "name": "Test_2",
+  "description": "Description test_2",
+  "price": 30,
+  "stock": 1
+  "category_id": 1 (debe existir el registro)
+}
+
+
+🔸 DELETE /api/products/{id}
+Elimina un producto por su ID.
