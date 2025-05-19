@@ -82,11 +82,11 @@ POST        /api/logout         Cerrar sesión
 ## 📦 Productos
 ```bash
 Método	     Ruta                   Descripción                         Rol
-GET         /api/products           Listar productos                Público
-GET         /api/products/{id}      Ver detalle de un producto      Público
-POST        /api/products           Crear nuevo producto            Admin
-PUT         /api/products/{id}      Actualizar producto existente   Admin
-DELETE      /api/products/{id}      Eliminar producto               Admin
+GET         /api/products           Listar productos                    Público
+GET         /api/products/{id}      Ver detalle de un producto          Público
+POST        /api/products           Crear nuevo producto                Admin
+PUT         /api/products/{id}      Actualizar producto existente       Admin
+DELETE      /api/products/{id}      Eliminar producto                   Admin
 ```
 
 ## 🛠 Migraciones y seeders incluidos
