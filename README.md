@@ -54,6 +54,26 @@ php artisan migrate
 php artisan serve
 ```
 
+## 🛠 Migraciones y seeders incluidos
+
+La aplicación incluye migraciones y seeders para contar con datos de prueba listos al ejecutar el proyecto. A continuación, se detallan los registros generados automáticamente:
+
+```bash
+👤 Usuarios:
+  - admin@admin.com (Rol: admin)
+  - user@user.com  (Rol: user)
+  - Contraseña para ambos: password
+
+📂 Categorías:
+  - 10 categorías de ejemplo
+  - IDs del 1 al 10
+
+📦 Productos:
+  - 10 productos de ejemplo
+  - IDs del 1 al 10
+```
+
+
 ## 🔐 Autenticación y Roles
 Este proyecto utiliza Laravel Sanctum para autenticación por token y define dos roles:
 
@@ -70,36 +90,6 @@ app/
 ├── Services/   <- Capa de lógica de negocio
 ```
 
-
-## 📚 Endpoints principales
- 🔑 Autenticación
-```bash
-Método      Ruta                Descripción	                
-POST        /api/register       Registrar nuevo usuario	    
-POST        /api/login          Iniciar sesión	            
-POST        /api/logout         Cerrar sesión	            
-```
-## 📦 Productos
-```bash
-Método	     Ruta                   Descripción                         Rol
-GET         /api/products           Listar productos                    Público
-GET         /api/products/{id}      Ver detalle de un producto          Público
-POST        /api/products           Crear nuevo producto                Admin
-PUT         /api/products/{id}      Actualizar producto existente       Admin
-DELETE      /api/products/{id}      Eliminar producto                   Admin
-```
-
-## 🛠 Migraciones y seeders incluidos
-```bash
-Users: 2 usuarios
-admin@admin.com
-user@user.com
-ambos con contraseña: password
-
-Categorias: 10 categorias de ejemplo
-
-Products: 10 productos de ejemplo
-```
 
 ## 🧠 Decisiones de diseño
 # Elección de enum vs tabla de roles
@@ -138,6 +128,10 @@ role_has_permissions
 
 Estas tablas permiten desacoplar la lógica de roles del modelo User, mejorar la mantenibilidad y facilitar futuras ampliaciones (como permisos específicos por productos).
 
+
+---
+
+
 ## 🧠 Importación y uso de API (Postman)
 Para hacer uso de la API en Postman se debe importar el archivo API_Collection.json ubicado en la carpeta raíz del proyecto. Este archivo contiene todas las peticiones organizadas por carpetas para facilitar su ejecución.
 
@@ -148,19 +142,33 @@ Antes de ejecutar las peticiones, es necesario crear un Environment en Postman c
 Valor: inventario-api.fly.dev
 
 🔸 token: Contiene el token de autenticación necesario para acceder a los endpoints protegidos.
-Valor: (se llena automáticamente después del login)
+Valor: (se llena automáticamente después de ejecutar el login)
 
-## 🔐 Autenticación
+## 🔐 Autenticación en Postman
 Antes de poder consumir los endpoints protegidos, es necesario autenticarse. Las rutas de autenticación disponibles son:
 
-Iniciar sesión
-Permite autenticarse con credenciales válidas y obtener un token.
+🔸 **POST /api/login: Iniciar sesión**: Permite autenticarse con credenciales válidas y obtener un token, los usuarios disponibles son: **admin@admin.com** y **user@user.com** y ambos usuarios con contraseña: **password**
 
-Cerrar sesión
-Invalida el token de sesión actual.
+Payload:
+```bash
+{
+  "email": "user@user.com",
+  "password": "password" 
+}
+```
+🔸 **POST /api/logout: Cerrar sesión**: Invalida el token y cierra sesión actual.
 
-Registrar nuevo usuario
-Permite crear una nueva cuenta de usuario (debe haber iniciado sesión)
+🔸 **POST /api/register: Registrar nuevo usuario**: Permite crear una nueva cuenta de usuario (debe haber iniciado sesión)
+
+Payload:
+```bash
+{
+  "name": "user",
+  "email": "user@user.com",
+  "password": "password",
+  "rol": "admin" //si el usuario autenticado es admin, puede seleccionar entre admin/user, de lo contrario solo se puede seleccionar user o eliminar la propiedad "rol" del bash
+}
+```
 
 ## 📦 Uso de la API
 La API está organizada en los siguientes grupos de recursos:
@@ -168,13 +176,13 @@ La API está organizada en los siguientes grupos de recursos:
 ## 📁 Categorías
 CRUD para la administración de categorías de productos:
 
-🔸 GET /api/categories
+🔸 **GET /api/category** :
 Lista todas las categorías disponibles.
 
-🔸 GET /api/categories/{id}
+🔸 **GET /api/category/{id}** : 
 Muestra los detalles de una categoría específica.
 
-🔸 POST /api/categories
+🔸 **POST /api/category** : 
 Crea una nueva categoría.
 Payload:
 
@@ -185,8 +193,9 @@ Payload:
 }
 ```
 
-🔸 PUT /api/categories/{id}
+🔸 **PUT /api/category/{id}** : 
 Actualiza una categoría existente.
+
 Payload:
 ```bash
 {
@@ -195,22 +204,22 @@ Payload:
 }
 ```
 
-🔸 DELETE /api/categories/{id}
+🔸 **DELETE /api/category/{id}** :
 Elimina una categoría por su ID.
 
-## 📦 Productos
+## 📁 Productos
 CRUD para la administración de productos:
 
-🔸 GET /api/products
+🔸 **GET /api/product** : 
 Lista todos los productos disponibles.
 
-🔸 GET /api/products/{id}
+🔸 **GET /api/product/{id}** : 
 Muestra los detalles de un producto específico.
 
-🔸 POST /api/products
+🔸 **POST /api/product** : 
 Crea un nuevo producto.
-Payload:
 
+Payload:
 ```bash
 {
   "name": "Test_1",
@@ -221,8 +230,9 @@ Payload:
 }
 ```
 
-🔸 PUT /api/products/{id}
+🔸 **PUT /api/product/{id}** : 
 Actualiza un producto existente.
+
 Payload:
 ```bash
 {
@@ -233,6 +243,6 @@ Payload:
   "category_id": 1 //(debe existir el registro en la tabla categories)
 }
 ```
-
-🔸 DELETE /api/products/{id}
+🔸 **DELETE /api/product/{id}** : 
 Elimina un producto por su ID.
+---
