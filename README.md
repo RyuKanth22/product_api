@@ -103,28 +103,28 @@ Se optó por una tabla de roles utilizando el paquete Spatie Laravel-Permission.
 🔸 Consultas más potentes y mantenibles desde la base de datos.
 
 
-## 🧠 Middleware o paquete de autorización
+# Middleware o paquete de autorización
 Se usó el middleware que proporciona Spatie, específicamente las directivas role. Esta opción permite aplicar restricciones de acceso tanto a nivel de rutas como de controladores de forma clara y expresiva.
 
 
-## 🧠 Cambios al esquema de base de datos
+# Cambios al esquema de base de datos
 Se realizaron modificaciones al esquema de base de datos para integrar el sistema de roles basado en el paquete Spatie Laravel-Permission:
 
-Se eliminó la columna role del tipo ENUM previamente presente en la tabla users.
+- Se eliminó la columna role del tipo ENUM previamente presente en la tabla users.
 
-En su lugar, se utilizó la relación proporcionada por Spatie, lo que permite asignar uno o varios roles a los usuarios de forma dinámica y escalable.
+- En su lugar, se utilizó la relación proporcionada por Spatie, lo que permite asignar uno o varios roles a los usuarios de forma dinámica y escalable.
 
 Adicionalmente, Spatie añadió automáticamente las siguientes tablas necesarias para gestionar roles y permisos:
 
-roles
+🔸 roles
 
-permissions
+🔸 permissions
 
-model_has_roles
+🔸 model_has_roles
 
-model_has_permissions
+🔸 model_has_permissions
 
-role_has_permissions
+🔸 role_has_permissions
 
 Estas tablas permiten desacoplar la lógica de roles del modelo User, mejorar la mantenibilidad y facilitar futuras ampliaciones (como permisos específicos por productos).
 
@@ -132,7 +132,7 @@ Estas tablas permiten desacoplar la lógica de roles del modelo User, mejorar la
 ---
 
 
-## 🧠 Importación y uso de API (Postman)
+## 📥 Importación y uso de API (Postman)
 Para hacer uso de la API en Postman se debe importar el archivo API_Collection.json ubicado en la carpeta raíz del proyecto. Este archivo contiene todas las peticiones organizadas por carpetas para facilitar su ejecución.
 
 ## ⚙️ Configuración del Environment en Postman
@@ -144,7 +144,7 @@ Valor: inventario-api.fly.dev
 🔸 token: Contiene el token de autenticación necesario para acceder a los endpoints protegidos.
 Valor: (se llena automáticamente después de ejecutar el login)
 
-## 🔐 Autenticación en Postman
+## 🔑 Autenticación en Postman
 Antes de poder consumir los endpoints protegidos, es necesario autenticarse. Las rutas de autenticación disponibles son:
 
 🔸 **POST /api/login: Iniciar sesión**: Permite autenticarse con credenciales válidas y obtener un token, los usuarios disponibles son: **admin@admin.com** y **user@user.com** y ambos usuarios con contraseña: **password**
@@ -166,7 +166,7 @@ Payload:
   "name": "user",
   "email": "user@user.com",
   "password": "password",
-  "rol": "admin" //si el usuario autenticado es admin, puede seleccionar entre admin/user, de lo contrario solo se puede seleccionar user o eliminar la propiedad "rol" del bash
+  "rol": "admin" //si el usuario autenticado es admin, puede seleccionar entre admin/user, de lo contrario solo se puede seleccionar user o eliminar la propiedad "rol" del payload
 }
 ```
 
@@ -184,8 +184,8 @@ Muestra los detalles de una categoría específica.
 
 🔸 **POST /api/category** : 
 Crea una nueva categoría.
-Payload:
 
+Payload:
 ```bash
 {
   "name": "category_1",
@@ -226,7 +226,7 @@ Payload:
   "description": "Description test_1",
   "price": 399,
   "stock": 20,
-  "category_id": 1 //(debe existir el registro en la tabla categories)
+  "category_id": 1 //debe existir el registro en la tabla categories
 }
 ```
 
@@ -240,9 +240,11 @@ Payload:
   "description": "Description test_2",
   "price": 30,
   "stock": 1,
-  "category_id": 1 //(debe existir el registro en la tabla categories)
+  "category_id": 1 //debe existir el registro en la tabla categories
 }
 ```
 🔸 **DELETE /api/product/{id}** : 
 Elimina un producto por su ID.
+
+
 ---
