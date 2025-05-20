@@ -68,7 +68,7 @@ La aplicación incluye migraciones y seeders para contar con datos de prueba lis
 ```
 
 
-## 🔑🔐 Autenticación y Roles
+## 🔐 Autenticación y Roles
 Este proyecto utiliza Laravel Sanctum para autenticación por token y define dos roles:
 
 🔸 **admin**: puede crear, actualizar, eliminar productos y categorias, ademas de registrar usuarios.
@@ -129,7 +129,7 @@ Estas tablas permiten desacoplar la lógica de roles del modelo User, mejorar la
 # 📥 Importación y uso de API (Postman)
 Para hacer uso de la API en Postman se debe importar el archivo API_Collection.json ubicado en la carpeta raíz del proyecto. Este archivo contiene todas las peticiones organizadas por carpetas para facilitar su ejecución.
 
-# ⚙️ Configuración del Environment en Postman
+## ⚙️ Configuración del Environment en Postman
 Antes de ejecutar las peticiones, es necesario crear un Environment en Postman con las siguientes variables:
 
 🔸 **tenant**: Define la URL base de la API.
@@ -140,7 +140,7 @@ Antes de ejecutar las peticiones, es necesario crear un Environment en Postman c
 
 **Valor**: (no hay necesidad de establecer un valor, porque se llena automáticamente después de iniciar sesión)
 
-# 🔑🔐 Autenticación en Postman
+## 🔐 Autenticación en Postman
 Antes de poder consumir los endpoints protegidos, es necesario autenticarse. Las rutas de autenticación disponibles son:
 
 🔸 **POST /api/login: Iniciar sesión**: Permite autenticarse con credenciales válidas y obtener un token, los usuarios disponibles son: 
@@ -151,7 +151,7 @@ Antes de poder consumir los endpoints protegidos, es necesario autenticarse. Las
  
  Ambos usuarios con contraseña: **password**
 
-Payload: **Opción Body => raw**
+Payload: **Opción Body --> raw**
 ```bash
 {
   "email": "user@user.com",
@@ -162,7 +162,7 @@ Payload: **Opción Body => raw**
 
 🔸 **POST /api/register: Registrar nuevo usuario**: Permite crear una nueva cuenta de usuario (debe haber iniciado sesión)
 
-Payload: **Opción Body => raw**
+Payload: **Opción Body --> raw**
 ```bash
 {
   "name": "user",
@@ -172,10 +172,10 @@ Payload: **Opción Body => raw**
 }
 ```
 
-## 📦 Uso de la API
+# 📦 Uso de la API
 La API está organizada en los siguientes grupos de recursos:
 
-## 📁 Categorías
+## Categorías
 CRUD para la administración de categorías de productos:
 
 🔸 **GET /api/category** :
@@ -187,7 +187,7 @@ Muestra los detalles de una categoría específica.
 🔸 **POST /api/category** : 
 Crea una nueva categoría.
 
-Payload: **Opción Body => raw**
+Payload: **Opción Body --> raw**
 ```bash
 {
   "name": "category_1",
@@ -198,7 +198,7 @@ Payload: **Opción Body => raw**
 🔸 **PUT /api/category/{id}** : 
 Actualiza una categoría existente.
 
-Payload: **Opción Body => raw**
+Payload: **Opción Body --> raw**
 ```bash
 {
   "name": "category_2",
@@ -209,7 +209,7 @@ Payload: **Opción Body => raw**
 🔸 **DELETE /api/category/{id}** :
 Elimina una categoría por su ID.
 
-## 📁 Productos
+## Productos
 CRUD para la administración de productos:
 
 🔸 **GET /api/product** : 
@@ -221,7 +221,7 @@ Muestra los detalles de un producto específico.
 🔸 **POST /api/product** : 
 Crea un nuevo producto.
 
-Payload: **Opción Body => raw**
+Payload: **Opción Body --> raw**
 ```bash
 {
   "name": "Test_1",
@@ -235,7 +235,7 @@ Payload: **Opción Body => raw**
 🔸 **PUT /api/product/{id}** : 
 Actualiza un producto existente.
 
-Payload: **Opción Body => raw**
+Payload: **Opción Body --> raw**
 ```bash
 {
   "name": "Test_2",
