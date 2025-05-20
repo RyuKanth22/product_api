@@ -216,8 +216,8 @@ Payload:
   "name": "Test_1",
   "description": "Description test_1",
   "price": 399,
-  "stock": 20
-  "category_id": 1 (debe existir el registro)
+  "stock": 20,
+  "category_id": 1 //(debe existir el registro en la tabla categories)
 }
 ```
 
@@ -229,8 +229,8 @@ Payload:
   "name": "Test_2",
   "description": "Description test_2",
   "price": 30,
-  "stock": 1
-  "category_id": 1 (debe existir el registro)
+  "stock": 1,
+  "category_id": 1 //(debe existir el registro en la tabla categories)
 }
 ```
 
