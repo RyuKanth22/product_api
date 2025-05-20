@@ -41,8 +41,8 @@ cp .env.example .env
 # Generar clave de aplicación
 php artisan key:generate
 
-# Ejecutar migraciones
-php artisan migrate
+# Ejecutar migraciones y seeders
+php artisan migrate --seed
 
 # Levantar servidor local
 php artisan serve
