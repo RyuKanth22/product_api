@@ -1,24 +1,18 @@
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
-
 # 🧪 Product API - Laravel 10
 
 API RESTful para la gestión de productos y usuarios, con autenticación, roles (`admin`, `user`) y autorización basada en permisos. Desarrollado en Laravel 10.
 ## 🚀 Url de despliegue: https://inventario-api.fly.dev
 ---
 
-## 🚀 Tecnologías utilizadas
+## 🛠️ Tecnologías utilizadas
 
 - Laravel 10
 - PHP 8.2
-- Sqlite
+- Sqlite (Base de datos)
 - Laravel Sanctum (autenticación)
+- Spatie Laravel-Permission (Permisos del usuario)
 - Docker + Fly.io (para despliegue)
 
 ---
@@ -32,7 +26,7 @@ Antes de empezar, asegúrate de tener instalado:
 
 ---
 
-## ⚙️ Instalación del proyecto
+## 📦 Instalación del proyecto
 ```bash
 # Clonar el repositorio
 git clone https://github.com/RyuKanth22/product_api.git
@@ -54,7 +48,7 @@ php artisan migrate
 php artisan serve
 ```
 
-## 🛠 Migraciones y seeders incluidos
+## 🛠️ Migraciones y seeders incluidos
 
 La aplicación incluye migraciones y seeders para contar con datos de prueba listos al ejecutar el proyecto. A continuación, se detallan los registros generados automáticamente:
 
@@ -74,12 +68,12 @@ La aplicación incluye migraciones y seeders para contar con datos de prueba lis
 ```
 
 
-## 🔐 Autenticación y Roles
+## 🔑🔐 Autenticación y Roles
 Este proyecto utiliza Laravel Sanctum para autenticación por token y define dos roles:
 
-admin: puede crear, actualizar, eliminar productos y categorias, ademas de registrar usuarios.
+🔸 **admin**: puede crear, actualizar, eliminar productos y categorias, ademas de registrar usuarios.
 
-user: solo puede registrarse, iniciar/cerrar sesión y ver productos.
+🔸 **user**: solo puede registrarse, iniciar/cerrar sesión y ver productos.
 
 
 ## 📁 Arquitectura del proyecto
@@ -110,9 +104,9 @@ Se usó el middleware que proporciona Spatie, específicamente las directivas ro
 # Cambios al esquema de base de datos
 Se realizaron modificaciones al esquema de base de datos para integrar el sistema de roles basado en el paquete Spatie Laravel-Permission:
 
-- Se eliminó la columna role del tipo ENUM previamente presente en la tabla users.
+🔸 Se eliminó la columna role del tipo ENUM previamente presente en la tabla users.
 
-- En su lugar, se utilizó la relación proporcionada por Spatie, lo que permite asignar uno o varios roles a los usuarios de forma dinámica y escalable.
+🔸 En su lugar, se utilizó la relación proporcionada por Spatie, lo que permite asignar uno o varios roles a los usuarios de forma dinámica y escalable.
 
 Adicionalmente, Spatie añadió automáticamente las siguientes tablas necesarias para gestionar roles y permisos:
 
@@ -126,7 +120,7 @@ Adicionalmente, Spatie añadió automáticamente las siguientes tablas necesaria
 
 🔸 role_has_permissions
 
-Estas tablas permiten desacoplar la lógica de roles del modelo User, mejorar la mantenibilidad y facilitar futuras ampliaciones (como permisos específicos por productos).
+Estas tablas permiten desacoplar la lógica de roles del modelo User, mejorar la mantenibilidad y facilitar futuras ampliaciones.
 
 
 ---
@@ -138,18 +132,26 @@ Para hacer uso de la API en Postman se debe importar el archivo API_Collection.j
 ## ⚙️ Configuración del Environment en Postman
 Antes de ejecutar las peticiones, es necesario crear un Environment en Postman con las siguientes variables:
 
-🔸 tenant: Define la URL base de la API.
-Valor: inventario-api.fly.dev
+🔸 **tenant**: Define la URL base de la API.
 
-🔸 token: Contiene el token de autenticación necesario para acceder a los endpoints protegidos.
-Valor: (se llena automáticamente después de ejecutar el login)
+**Valor**: inventario-api.fly.dev
 
-## 🔑 Autenticación en Postman
+🔸 **token**: Contiene el token de autenticación necesario para acceder a los endpoints protegidos.
+
+**Valor**: (no hay necesidad de establecer un valor, porque se llena automáticamente después de iniciar sesión)
+
+## 🔑🔐 Autenticación en Postman
 Antes de poder consumir los endpoints protegidos, es necesario autenticarse. Las rutas de autenticación disponibles son:
 
-🔸 **POST /api/login: Iniciar sesión**: Permite autenticarse con credenciales válidas y obtener un token, los usuarios disponibles son: **admin@admin.com** y **user@user.com** y ambos usuarios con contraseña: **password**
+🔸 **POST /api/login: Iniciar sesión**: Permite autenticarse con credenciales válidas y obtener un token, los usuarios disponibles son: 
 
-Payload:
+**admin@admin.com** 
+
+ **user@user.com**
+ 
+ Ambos usuarios con contraseña: **password**
+
+Payload: **Opción Body => raw**
 ```bash
 {
   "email": "user@user.com",
@@ -160,7 +162,7 @@ Payload:
 
 🔸 **POST /api/register: Registrar nuevo usuario**: Permite crear una nueva cuenta de usuario (debe haber iniciado sesión)
 
-Payload:
+Payload: **Opción Body => raw**
 ```bash
 {
   "name": "user",
@@ -185,7 +187,7 @@ Muestra los detalles de una categoría específica.
 🔸 **POST /api/category** : 
 Crea una nueva categoría.
 
-Payload:
+Payload: **Opción Body => raw**
 ```bash
 {
   "name": "category_1",
@@ -196,7 +198,7 @@ Payload:
 🔸 **PUT /api/category/{id}** : 
 Actualiza una categoría existente.
 
-Payload:
+Payload: **Opción Body => raw**
 ```bash
 {
   "name": "category_2",
@@ -219,7 +221,7 @@ Muestra los detalles de un producto específico.
 🔸 **POST /api/product** : 
 Crea un nuevo producto.
 
-Payload:
+Payload: **Opción Body => raw**
 ```bash
 {
   "name": "Test_1",
@@ -233,7 +235,7 @@ Payload:
 🔸 **PUT /api/product/{id}** : 
 Actualiza un producto existente.
 
-Payload:
+Payload: **Opción Body => raw**
 ```bash
 {
   "name": "Test_2",
