@@ -85,8 +85,8 @@ app/
 ```
 
 
-## 🧠 Decisiones de diseño
-# Elección de enum vs tabla de roles
+# 🧠 Decisiones de diseño
+## Elección de enum vs tabla de roles
 
 Se optó por una tabla de roles utilizando el paquete Spatie Laravel-Permission. Esta decisión permite una mayor flexibilidad, escalabilidad y control granular de permisos. A diferencia de los enum, una tabla facilita:
 
@@ -97,11 +97,11 @@ Se optó por una tabla de roles utilizando el paquete Spatie Laravel-Permission.
 🔸 Consultas más potentes y mantenibles desde la base de datos.
 
 
-# Middleware o paquete de autorización
+## Middleware o paquete de autorización
 Se usó el middleware que proporciona Spatie, específicamente las directivas role. Esta opción permite aplicar restricciones de acceso tanto a nivel de rutas como de controladores de forma clara y expresiva.
 
 
-# Cambios al esquema de base de datos
+## Cambios al esquema de base de datos
 Se realizaron modificaciones al esquema de base de datos para integrar el sistema de roles basado en el paquete Spatie Laravel-Permission:
 
 🔸 Se eliminó la columna role del tipo ENUM previamente presente en la tabla users.
@@ -126,10 +126,10 @@ Estas tablas permiten desacoplar la lógica de roles del modelo User, mejorar la
 ---
 
 
-## 📥 Importación y uso de API (Postman)
+# 📥 Importación y uso de API (Postman)
 Para hacer uso de la API en Postman se debe importar el archivo API_Collection.json ubicado en la carpeta raíz del proyecto. Este archivo contiene todas las peticiones organizadas por carpetas para facilitar su ejecución.
 
-## ⚙️ Configuración del Environment en Postman
+# ⚙️ Configuración del Environment en Postman
 Antes de ejecutar las peticiones, es necesario crear un Environment en Postman con las siguientes variables:
 
 🔸 **tenant**: Define la URL base de la API.
@@ -140,7 +140,7 @@ Antes de ejecutar las peticiones, es necesario crear un Environment en Postman c
 
 **Valor**: (no hay necesidad de establecer un valor, porque se llena automáticamente después de iniciar sesión)
 
-## 🔑🔐 Autenticación en Postman
+# 🔑🔐 Autenticación en Postman
 Antes de poder consumir los endpoints protegidos, es necesario autenticarse. Las rutas de autenticación disponibles son:
 
 🔸 **POST /api/login: Iniciar sesión**: Permite autenticarse con credenciales válidas y obtener un token, los usuarios disponibles son: 
